@@ -1,0 +1,24 @@
+body {
+  background: url("./bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
+
+:local(.container) {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items:center;
+}
+
+:local(.panel) {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+:local(.logo) {
+  display: block;
+  margin: 0 auto;
+  width: 45%;
+}

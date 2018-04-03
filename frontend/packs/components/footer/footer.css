@@ -1,0 +1,11 @@
+:local(.navbar) {
+  @extend .navbar-fixed-bottom;
+  background-color: #565556 !important;
+  border: none !important;
+  margin-bottom: 0 !important;
+  position: relative !important;
+}
+
+:local(.copyright) {
+  color: #EFEBDE !important;
+}

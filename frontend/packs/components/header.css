@@ -1,0 +1,31 @@
+h4 {
+  font-weight: 300 !important;
+}
+
+h4 strong {
+  font-weight: 500 !important;
+}
+
+:local(.center) {
+  display: inline-block;
+  vertical-align: middle;
+  float: none !important;
+  color: #EFEBDE;
+}
+
+:local(.blue) {
+  background-color: #616e94 !important;
+  color: white !important;
+  font-family: 'Roboto';
+  margin-bottom: 0 !important;
+}
+
+:local(.blue h4) {
+  line-height: 1.6;
+}
+
+:local(.white) {
+  background-color: white !important;
+  font-family: 'Roboto';
+  margin-bottom: 0 !important;
+}
