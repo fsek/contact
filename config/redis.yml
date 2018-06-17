@@ -1,0 +1,12 @@
+default: &default
+  adapter: redis
+  url: <%= ENV['REDIS_DATABASE'] %>
+
+production: *default
+
+development: *default
+
+staging: *default
+
+test:
+  adapter: async

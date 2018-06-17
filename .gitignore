@@ -34,3 +34,5 @@ config/initializers/secret_token.rb
 *.rbc
 capybara-*.html
 .rspec
+
+.DS_Store

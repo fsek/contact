@@ -12,7 +12,7 @@ export default class Footer extends Component {
     return (
       <Navbar fixedBottom={true} className={styles.navbar}>
         <Navbar.Text className={styles.copyright}>
-          Copyright © F-teknologsektionen inom TLTH, 2018.
+          Copyright © F-sektionen inom TLTH, 2018.
         </Navbar.Text>
       </Navbar>
     )

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ciphertext: 
+  iv: 
+  salt: 
+  user: one
+  anon_user: one
+
+two:
+  ciphertext: 
+  iv: 
+  salt: 
+  user: two
+  anon_user: two
