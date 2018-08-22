@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { Jumbotron } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Panel } from 'react-bootstrap';
-
+import { Grid, Row, Col, Jumbotron, Button, Panel } from 'react-bootstrap';
 import Layout from './layout';
+import MessageForm from './MessageForm';
 import styles from './navbar.css';
 import headerStyle from './header.css';
 
 export  default class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      formUp: false,
+      currentContact: null,
+      contactName: null
+    };
+
+    this.contactFoset = this.contactFoset.bind(this);
+    //this.contactLibu = this.contactLibu.bind(this);
+  }
+
+  contactFoset() {
+    this.setState({
+      formUp: true,
+      currentContact: 'foset',
+      contactName: 'Föset'
+    });
+  }
 
   render() {
+    const { formUp, currentContact, contactName } = this.state;
+
     return (
       <Layout>
+        <MessageForm visible={formUp} contact={currentContact} name={contactName} />
         <Jumbotron className={styles.orange}>
           <div className="container">
             <Grid>
@@ -33,30 +53,30 @@ export  default class LandingPage extends Component {
         </Jumbotron>
 
         <Jumbotron className={headerStyle.white}>
-        <Grid>
-          <Row>
-            <Col xs={12} md={6}>
-              <Panel>
-                <Panel.Heading>
-                  <Panel.Title componentClass="h3">Föset</Panel.Title>
-                </Panel.Heading>
-                <Panel.Body display="block">
-                  <Button bsStyle="primary">Kontakta</Button>
-                </Panel.Body>
-              </Panel>
-            </Col>
-            <Col xs={12} md={6}>
-              <Panel>
-                <Panel.Heading>
-                  <Panel.Title componentClass="h3">Likabehandlingsutskottet</Panel.Title>
-                </Panel.Heading>
-                <Panel.Body>
-                  <Button bsStyle="primary">Kontakta</Button>
-                </Panel.Body>
-              </Panel>
-            </Col>
-          </Row>
-        </Grid>
+          <Grid>
+            <Row>
+              <Col xs={12} md={6}>
+                <Panel>
+                  <Panel.Heading>
+                    <Panel.Title componentClass="h3">Föset</Panel.Title>
+                  </Panel.Heading>
+                  <Panel.Body display="block">
+                    <Button bsStyle="primary" onClick={this.contactFoset}>Kontakta</Button>
+                  </Panel.Body>
+                </Panel>
+              </Col>
+              <Col xs={12} md={6}>
+                <Panel>
+                  <Panel.Heading>
+                    <Panel.Title componentClass="h3">Likabehandlingsutskottet</Panel.Title>
+                  </Panel.Heading>
+                  <Panel.Body>
+                    <Button bsStyle="primary">Kontakta</Button>
+                  </Panel.Body>
+                </Panel>
+              </Col>
+            </Row>
+          </Grid>
         </Jumbotron>
 
         <Jumbotron className={headerStyle.blue}>
@@ -76,6 +96,6 @@ export  default class LandingPage extends Component {
           </div>
         </Jumbotron>
       </Layout>
-    )
+    );
   }
 }

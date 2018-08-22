@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import styles from './navbar.css';
@@ -29,7 +28,7 @@ export default class MyNav extends Component {
             </NavItem>
           </Nav>
           <Nav pullRight>
-            <Link to='/logga_in'>
+            <Link to="/logga_in">
               <Button className={loginBtnClass}>
                 <NavItem eventKey={3}>
                   Logga in
@@ -39,6 +38,6 @@ export default class MyNav extends Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    )
+    );
   }
 }

@@ -1,13 +1,48 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Panel } from 'react-bootstrap';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import Footer from '../footer/index';
-
-import style from './sign_in.css'
+import axios from 'axios';
+import { Grid, Col, Button, Panel, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import style from './sign_in.css';
 
 export  default class SignIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+
+    this.signIn = this.signIn.bind(this);
+    this.setEmail = this.setEmail.bind(this);
+    this.setPassword = this.setPassword.bind(this);
+  }
+
+  async signIn(event) {
+    event.preventDefault();
+
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+    const result = await axios.post(
+      'http://localhost:5000/users/sign_in',
+      {
+        user: {
+          email: this.state.email,
+          password: this.state.password
+        }
+      },
+      {
+        headers: { 'X-CSRF-Token': csrf_token }
+      }
+    );
+
+    console.log(result);
+  }
+
+  setEmail(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  setPassword(event) {
+    this.setState({ password: event.target.value });
+  }
 
   render() {
     return (
@@ -19,18 +54,18 @@ export  default class SignIn extends Component {
               <form>
                 <FormGroup bsSize="lg">
                   <ControlLabel>E-mail:</ControlLabel>
-                  <FormControl type="email"/>
+                  <FormControl type="email" onChange={this.setEmail} />
                 </FormGroup>
                 <FormGroup bsSize="lg">
                   <ControlLabel>Lösenord:</ControlLabel>
-                  <FormControl type="password"/>
+                  <FormControl type="password" onChange={this.setPassword} />
                 </FormGroup>
-                <Button type="submit">Logga in</Button>
+                <Button type="submit" onClick={this.signIn}>Logga in</Button>
               </form>
             </Panel.Body>
           </Panel>
         </Col>
       </Grid>
-    )
+    );
   }
 }
