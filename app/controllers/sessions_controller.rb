@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
   skip_before_action :verify_authenticity_token
+  skip_before_action :require_no_authentication
 
   def create
     @user = User.find_by_email(user_params[:email])
@@ -24,9 +25,21 @@ class SessionsController < Devise::SessionsController
 
   def destroy
     sign_out(@user)
+
+    SessionData.remove_private_key(session[:private_key_reference])
+    session[:private_key_reference] = nil
+    session[:private_key_password] = nil
+
     render json: { success: true }
   end
 
+  def check_auth
+    if current_user.present?
+      render json: { }, status: :ok
+    else
+      render json: { }, status: 401
+    end
+  end
 
   private
 

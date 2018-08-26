@@ -21,12 +21,22 @@ class ConversationItem extends Component {
     return `${day} ${time}`;
   }
 
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  async onClick() {
+    const { setMessage, id } = this.props;
+    setMessage(id);
+  }
+
   render() {
-    const { id, updated_at } = this.props;
+    const { updated_at } = this.props;
     const date = ConversationItem.printDate(updated_at);
 
     return (
-      <ListGroupItem header={date} href="#" />
+      <ListGroupItem header={date} href="#" onClick={this.onClick} />
     );
   }
 }

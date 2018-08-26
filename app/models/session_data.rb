@@ -39,4 +39,12 @@ class SessionData
                                     Base64.decode64(data[:iv]),
                                     Base64.decode64(data[:ciphertext]))
   end
+
+  def self.remove_private_key(reference)
+    unless reference.present?
+      return
+    end
+
+    redis.del(reference)
+  end
 end

@@ -70,8 +70,6 @@ module MessageService
     # Decrypt the anon_user private key
     private_key = CryptoService.symmetric_decrypt(externalPassword, anon_user.private_key_salt, anon_user.private_key_iv, anon_user.encrypted_private_key)
 
-    puts(private_key)
-
     # Extract and decrypt the symmetric conversation password
     password = CryptoService.private_decrypt(private_key, anon_user.encrypted_conversation_key)
 

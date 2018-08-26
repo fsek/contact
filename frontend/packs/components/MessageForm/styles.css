@@ -20,14 +20,6 @@
   flex-direction: column;
 }
 
-:local(.overlay) {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100vw;
-  height: 100vh;
-  z-index: 99999;
-  position: fixed;
-}
-
 :local(.receiver) {
   font-weight: bold;
   font-size: 18px;

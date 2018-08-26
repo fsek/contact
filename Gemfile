@@ -16,6 +16,12 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'dotenv-rails'
+  gem 'capistrano', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-yarn', require: false
+  gem 'capistrano-nvm', require: false
 end
 
 group :development do

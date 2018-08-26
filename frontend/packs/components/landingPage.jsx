@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Jumbotron, Button, Panel } from 'react-bootstrap';
-import Layout from './layout';
+import NavBar from './navbar/index';
+import Footer from './footer/index';
 import MessageForm from './MessageForm';
 import styles from './navbar.css';
 import headerStyle from './header.css';
@@ -16,23 +17,37 @@ export  default class LandingPage extends Component {
     };
 
     this.contactFoset = this.contactFoset.bind(this);
-    //this.contactLibu = this.contactLibu.bind(this);
+    this.contactLibu = this.contactLibu.bind(this);
+    this.setFormVisibility = this.setFormVisibility.bind(this);
   }
 
   contactFoset() {
     this.setState({
       formUp: true,
-      currentContact: 'foset',
+      currentContact: 1,
       contactName: 'Föset'
     });
+  }
+
+  contactLibu() {
+    this.setState({
+      formUp: true,
+      currentContact: 2,
+      contactName: 'Liakabehandlinsutskottet'
+    });
+  }
+
+  setFormVisibility(visible) {
+    this.setState({ formUp: visible });
   }
 
   render() {
     const { formUp, currentContact, contactName } = this.state;
 
     return (
-      <Layout>
-        <MessageForm visible={formUp} contact={currentContact} name={contactName} />
+      <div>
+        <MessageForm visible={formUp} contact={currentContact} name={contactName} setVisibility={this.setFormVisibility} />
+        <NavBar/>
         <Jumbotron className={styles.orange}>
           <div className="container">
             <Grid>
@@ -71,7 +86,7 @@ export  default class LandingPage extends Component {
                     <Panel.Title componentClass="h3">Likabehandlingsutskottet</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body>
-                    <Button bsStyle="primary">Kontakta</Button>
+                    <Button bsStyle="primary" onClick={this.contactLibu}>Kontakta</Button>
                   </Panel.Body>
                 </Panel>
               </Col>
@@ -95,7 +110,8 @@ export  default class LandingPage extends Component {
             </Grid>
           </div>
         </Jumbotron>
-      </Layout>
+        <Footer/>
+      </div>
     );
   }
 }
