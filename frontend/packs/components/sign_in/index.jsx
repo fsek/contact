@@ -35,7 +35,7 @@ export default class SignIn extends Component {
 
     try {
       const result = await axios.post(
-        'http://localhost:5000/users/sign_in',
+        `${window.location.origin}/users/sign_in`,
         {
           user: {
             email: this.state.email,

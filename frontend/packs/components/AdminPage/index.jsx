@@ -33,7 +33,7 @@ class AdminPage extends Component {
 
   async checkIfAuthenticated() {
     try {
-      const result = await axios.get('http://localhost:5000/api/users/check_auth');
+      const result = await axios.get(`${window.location.origin}/api/users/check_auth`);
 
       if (result && result.status === 200) {
         return true;
@@ -46,7 +46,7 @@ class AdminPage extends Component {
   }
 
   async getConversations() {
-    const result = await axios.get('http://localhost:5000/api/admin_conversations');
+    const result = await axios.get(`${window.location.origin}/api/admin_conversations`);
     const { data } = result;
 
     if (data) {
@@ -57,7 +57,7 @@ class AdminPage extends Component {
   async setMessage(id) {
     const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
     const result = await axios.get(
-      `http://localhost:5000/api/admin_conversations/${id}`,
+      `${window.location.origin}/api/admin_conversations/${id}`,
       {
         headers: { 'X-CSRF-Token': csrf_token }
       }

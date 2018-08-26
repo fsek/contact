@@ -40,7 +40,7 @@ class MessageForm extends Component {
 
     try {
       const result = await axios.post(
-        'http://localhost:5000/api/conversations',
+        `${window.location.origin}/api/conversations`,
         {
           user_id: this.state.contact,
           message: this.state.content

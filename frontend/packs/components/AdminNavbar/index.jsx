@@ -14,7 +14,7 @@ export default class AdminNavbar extends Component {
     const { history } = this.props;
     const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
     await axios.delete(
-      'http://localhost:5000/users/sign_out',
+      `${window.location.origin}/users/sign_out`,
       {
         headers: { 'X-CSRF-Token': csrf_token }
       }
