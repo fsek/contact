@@ -7,6 +7,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'webpacker'
 gem 'redis'
+gem 'uglifier'
 
 #gem 'jbuilder', '~> 2.5'
 

@@ -90,6 +90,7 @@ GEM
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
     erubi (1.7.1)
+    execjs (2.7.0)
     ffi (1.9.23)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -176,6 +177,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    uglifier (4.1.18)
+      execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.1)
@@ -215,6 +218,7 @@ DEPENDENCIES
   rails (= 5.1.6)
   redis
   selenium-webdriver
+  uglifier
   web-console (>= 3.3.0)
   webpacker
 
