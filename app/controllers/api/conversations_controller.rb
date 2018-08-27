@@ -7,9 +7,9 @@ class Api::ConversationsController < Api::BaseController
   end
 
   def show
-    anon_user = AnonUser.find_by!(reference: params[:r])
+    anon_user = AnonUser.find_by!(reference: params[:reference])
     conversation = anon_user.conversation
-    @messages = MessageService.get_messages_for_anon(anon_user, conversation, params[:p])
+    @messages = MessageService.get_messages_for_anon(anon_user, conversation, params[:password])
 
     render json: @messages, status: :ok
   end

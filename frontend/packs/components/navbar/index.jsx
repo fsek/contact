@@ -23,9 +23,6 @@ export default class MyNav extends Component {
             <NavItem eventKey={1} href="#">
               Start
             </NavItem>
-            <NavItem eventKey={2} href="#">
-              Om
-            </NavItem>
           </Nav>
           <Nav pullRight>
             <Link to="/logga_in">

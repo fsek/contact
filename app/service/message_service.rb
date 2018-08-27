@@ -80,8 +80,14 @@ module MessageService
   private
 
   def self.get_messages(conversation, password)
+    fsek_username = conversation.user.to_s
+    anon_username = 'Anonym användare'
+
     conversation.messages.map do |message|
-      CryptoService.symmetric_decrypt(password, message.salt, message.iv, message.ciphertext)
+      content = CryptoService.symmetric_decrypt(password, message.salt, message.iv, message.ciphertext)
+      author = message.user.present? ? fsek_username : anon_username
+
+      { id: message.id, content: content, author: author }
     end
   end
 end

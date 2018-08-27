@@ -9,3 +9,7 @@
 :local(.copyright) {
   color: #EFEBDE !important;
 }
+
+:local(.right) {
+  float: right !important;
+}

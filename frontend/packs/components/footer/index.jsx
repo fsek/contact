@@ -13,6 +13,10 @@ export default class Footer extends Component {
       <Navbar fixedBottom={true} className={styles.navbar}>
         <Navbar.Text className={styles.copyright}>
           Copyright © F-sektionen inom TLTH, 2018.
+
+        </Navbar.Text>
+        <Navbar.Text className={styles.right}>
+          Icons by Twiter from www.flaticon.com
         </Navbar.Text>
       </Navbar>
     )

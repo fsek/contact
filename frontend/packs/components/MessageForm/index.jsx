@@ -51,6 +51,7 @@ class MessageForm extends Component {
       );
 
       if (result && result.status === 200) {
+        console.log(result.data);
         // Close the modal
         this.closeModal();
         return;
