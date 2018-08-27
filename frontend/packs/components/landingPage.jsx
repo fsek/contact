@@ -56,8 +56,8 @@ export  default class LandingPage extends Component {
                   <h1>F-sektionen</h1>
                   <h2>Anonym kontaktsida</h2>
                   <br/>
-                  <h4>Här kan du enkelt och <strong>anonymt</strong> kontakta <strong>föset</strong> eller</h4>
-                  <h4><strong>likabehandlingsutskottet</strong> och även få svar.</h4>
+                  <h4>Här kan du enkelt och <strong>anonymt</strong> starta en konversation</h4>
+                  <h4>med <strong>föset</strong> eller <strong>likabehandlingsutskottet</strong>.</h4>
                 </Col>
                 <Col xs={12} md={6} className={headerStyle.center}>
                   <img src={require('./mail.svg')} height={200} />
@@ -104,7 +104,7 @@ export  default class LandingPage extends Component {
                 <Col xs={12} md={6} className={headerStyle.center}>
                   <h2>Hur fungerar det?</h2>
                   <br/>
-                  <h4>När du kontaktar oss behöver du inte ange några uppgifter om dig själv. Om du vill ha svar skapas en slumpmässigt genererad länk som kan användas för vidare kommunikation.</h4>
+                  <h4>När du kontaktar oss behöver du inte ange några uppgifter om dig själv. Alla meddelanden krypteras så att enbart du och mottagaren kan läsa dem. När du skickar ett meddelande får du tillbaka en länk som du kan använda för att läsa mottagarens svar och fortsätta konversationen.</h4>
                 </Col>
               </Row>
             </Grid>

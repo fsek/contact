@@ -32,11 +32,12 @@ class ConversationItem extends Component {
   }
 
   render() {
-    const { updated_at } = this.props;
+    const { updated_at, currentConversation, id } = this.props;
     const date = ConversationItem.printDate(updated_at);
+    const active = currentConversation === id;
 
     return (
-      <ListGroupItem header={date} href="#" onClick={this.onClick} />
+      <ListGroupItem header={date} href="#" onClick={this.onClick} active={active} />
     );
   }
 }

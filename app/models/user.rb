@@ -15,6 +15,10 @@ class User < ApplicationRecord
                                     encrypted_private_key)
   end
 
+  def to_s
+    email
+  end
+
   private
 
   def generate_keys

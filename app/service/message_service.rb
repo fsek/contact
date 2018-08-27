@@ -42,7 +42,13 @@ module MessageService
                     conversation: conversation)
   end
 
-  def self.anon_add_message(anon_user, conversation, plaintext, private_key)
+  def self.anon_add_message(anon_user, conversation, plaintext, externalPassword)
+    # Decrypt the anon_user private key
+    private_key = CryptoService.symmetric_decrypt(externalPassword,
+                                                  anon_user.private_key_salt,
+                                                  anon_user.private_key_iv,
+                                                  anon_user.encrypted_private_key)
+
     # Extract and decrypt the symmetric password
     password = CryptoService.private_decrypt(private_key, anon_user.encrypted_conversation_key)
 
@@ -68,7 +74,10 @@ module MessageService
 
   def self.get_messages_for_anon(anon_user, conversation, externalPassword)
     # Decrypt the anon_user private key
-    private_key = CryptoService.symmetric_decrypt(externalPassword, anon_user.private_key_salt, anon_user.private_key_iv, anon_user.encrypted_private_key)
+    private_key = CryptoService.symmetric_decrypt(externalPassword,
+                                                  anon_user.private_key_salt,
+                                                  anon_user.private_key_iv,
+                                                  anon_user.encrypted_private_key)
 
     # Extract and decrypt the symmetric conversation password
     password = CryptoService.private_decrypt(private_key, anon_user.encrypted_conversation_key)

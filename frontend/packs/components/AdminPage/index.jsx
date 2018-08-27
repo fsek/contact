@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
+import { Grid, Row, Col, ListGroup } from 'react-bootstrap';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 import ConversationItem from '../ConversationItem';
+import MessageItem from '../MessageItem';
+import ResponseForm from '../ResponseForm';
 import styles from './styles.css';
 
 class AdminPage extends Component {
@@ -12,12 +14,13 @@ class AdminPage extends Component {
 
     this.state = {
       conversations: [],
-      conversationsLoaded: false,
-      message: null,
+      currentConversation: null,
+      messages: null,
       authenticated: null
     };
 
     this.setMessage = this.setMessage.bind(this);
+    this.onResponseSend = this.onResponseSend.bind(this);
   }
 
   async componentDidMount() {
@@ -64,26 +67,48 @@ class AdminPage extends Component {
     );
 
     if (result.data) {
-      this.setState({ message: result.data });
+      this.setState({ messages: result.data, currentConversation: id });
     }
   }
 
-  renderMessage() {
-    const { message } = this.state;
+  async onResponseSend(content) {
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+    const { currentConversation } = this.state;
 
-    if (!message) return <div/>;
+    try {
+      const result = await axios.post(
+        `${window.location.origin}/api/admin_conversations/${currentConversation}/messages`,
+        {
+          content
+        },
+        {
+          headers: { 'X-CSRF-Token': csrf_token }
+        }
+      );
+
+      this.setMessage(currentConversation);
+
+      return true;
+    } catch(error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  renderMessages() {
+    const { messages } = this.state;
+
+    if (!messages) return <div/>;
+
+    const messageItems = messages.map(message =>
+      <MessageItem key={message.id} content={message.content} author={message.author} />
+    );
 
     return (
-      <Panel>
-        <Panel.Heading>
-          <Panel.Title>
-            Meddelande
-          </Panel.Title>
-        </Panel.Heading>
-        <Panel.Body>
-          {message}
-        </Panel.Body>
-      </Panel>
+      <div>
+        {messageItems}
+        <ResponseForm onSend={this.onResponseSend} />
+      </div>
     );
   }
 
@@ -96,11 +121,17 @@ class AdminPage extends Component {
       return <Redirect to={{ pathname: '/logga_in' }} />;
     }
 
-    const { conversations, conversationsLoaded } = this.state;
+    const { conversations, currentConversation } = this.state;
     const { history } = this.props;
-    const messageView = this.renderMessage();
-    const conv = conversations.map(c =>
-      <ConversationItem key={c.id} updated_at={c.updated_at} id={c.id} setMessage={this.setMessage} />
+    const messageView = this.renderMessages();
+    const conversationItems = conversations.map(conversation =>
+      <ConversationItem
+        key={conversation.id}
+        updated_at={conversation.updated_at}
+        id={conversation.id}
+        setMessage={this.setMessage}
+        currentConversation={currentConversation}
+      />
     );
 
     return (
@@ -110,7 +141,7 @@ class AdminPage extends Component {
           <Row>
             <Col xs={6} md={3}>
               <ListGroup>
-                {conv}
+                {conversationItems}
               </ListGroup>
             </Col>
             <Col xs={6} md={9}>

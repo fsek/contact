@@ -4,6 +4,7 @@ import NavBar from '../navbar/index';
 import MessageItem from '../MessageItem';
 import queryString from 'query-string';
 import axios from 'axios';
+import ResponseForm from '../ResponseForm';
 import styles from './styles';
 
 class UserMessages extends Component {
@@ -13,6 +14,8 @@ class UserMessages extends Component {
     this.state = {
       data: null
     };
+
+    this.onSend = this.onSend.bind(this);
   }
 
   async getMessages() {
@@ -50,6 +53,32 @@ class UserMessages extends Component {
     }
   }
 
+  async onSend(content) {
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+    const { reference, password } = this;
+
+    try {
+      const result = await axios.post(
+        `${window.location.origin}/api/messages`,
+        {
+          reference,
+          password,
+          content
+        },
+        {
+          headers: { 'X-CSRF-Token': csrf_token }
+        }
+      );
+
+      this.getMessages();
+
+      return true;
+    } catch(error) {
+      console.error(error);
+      return false;
+    }
+  }
+
   render() {
     const { data } = this.state;
     if (data === null) return <div />;
@@ -64,6 +93,7 @@ class UserMessages extends Component {
         <Grid className={styles.content}>
           <Row>
             {messages}
+            <ResponseForm onSend={this.onSend} />
           </Row>
         </Grid>
       </div>

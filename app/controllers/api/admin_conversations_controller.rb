@@ -2,7 +2,7 @@ class Api::AdminConversationsController < Api::BaseController
   authorize_resource :conversation, parent: false
 
   def index
-    @conversations = current_user.conversations
+    @conversations = current_user.conversations.by_date
 
     render json: @conversations, status: :ok
   end

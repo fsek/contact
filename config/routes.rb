@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   namespace :api, constraints: { format: 'json' } do
     resources :conversations, only: :create
     resource :conversation, only: :show, controller: :conversations
+    resources :messages, only: :create
     resources :admin_conversations, only: [:index, :show, :destroy] do
-      resources :messages, only: [:create]
+      resources :messages, only: :create, controller: :admin_messages
     end
     resource :users, only: [] do
       get 'check_auth'

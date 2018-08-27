@@ -12,7 +12,7 @@ export default class MyNav extends Component {
       <Navbar className={styles.navbar}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">
+            <a href="/">
               <img src={require('./f.png')} className={styles.navicon} />
             </a>
           </Navbar.Brand>
@@ -20,7 +20,7 @@ export default class MyNav extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">
+            <NavItem eventKey={1} href="/">
               Start
             </NavItem>
           </Nav>
