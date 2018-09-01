@@ -26,11 +26,7 @@ export default class MyNav extends Component {
           </Nav>
           <Nav pullRight>
             <Link to="/logga_in">
-              <Button className={loginBtnClass}>
-                <NavItem eventKey={3}>
-                  Logga in
-                </NavItem>
-              </Button>
+              <Button className={loginBtnClass}>Logga in</Button>
             </Link>
           </Nav>
         </Navbar.Collapse>

@@ -37,11 +37,7 @@ export default class AdminNavbar extends Component {
         </Navbar.Header>
         <Nav pullRight>
           <a href="#" onClick={this.signOut}>
-            <Button className={logoutBtnClass}>
-              <NavItem eventKey={3}>
-                Logga ut
-              </NavItem>
-            </Button>
+            <Button className={logoutBtnClass}>Logga ut</Button>
           </a>
         </Nav>
       </Navbar>
