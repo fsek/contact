@@ -18,6 +18,7 @@ export  default class LandingPage extends Component {
 
     this.contactFoset = this.contactFoset.bind(this);
     this.contactLibu = this.contactLibu.bind(this);
+    this.contactStyrelsen = this.contactStyrelsen.bind(this);
     this.setFormVisibility = this.setFormVisibility.bind(this);
   }
 
@@ -34,6 +35,14 @@ export  default class LandingPage extends Component {
       formUp: true,
       currentContact: 2,
       contactName: 'Liakabehandlinsutskottet'
+    });
+  }
+
+  contactStyrelsen() {
+    this.setState({
+      formUp: true,
+      currentContact: 3,
+      contactName: 'Styrelsen'
     });
   }
 
@@ -87,6 +96,16 @@ export  default class LandingPage extends Component {
                   </Panel.Heading>
                   <Panel.Body>
                     <Button bsStyle="primary" onClick={this.contactLibu}>Kontakta</Button>
+                  </Panel.Body>
+                </Panel>
+              </Col>
+              <Col xs={12} md={6}>
+                <Panel>
+                  <Panel.Heading>
+                    <Panel.Title componentClass="h3">Styrelsen</Panel.Title>
+                  </Panel.Heading>
+                  <Panel.Body>
+                    <Button bsStyle="primary" onClick={this.contactStyrelsen}>Kontakta</Button>
                   </Panel.Body>
                 </Panel>
               </Col>
