@@ -121,7 +121,8 @@ GEM
     orm_adapter (0.5.0)
     pg (1.0.0)
     public_suffix (3.0.2)
-    puma (3.11.3)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     rack (2.0.5)
     rack-proxy (0.6.4)
       rack
@@ -214,7 +215,7 @@ DEPENDENCIES
   foreman
   listen (>= 3.0.5, < 3.2)
   pg
-  puma (~> 3.7)
+  puma (~> 4.3)
   rails (= 5.1.6)
   redis
   selenium-webdriver
