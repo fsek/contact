@@ -41,7 +41,7 @@ export  default class LandingPage extends Component {
   contactStyrelsen() {
     this.setState({
       formUp: true,
-      currentContact: 3,
+      currentContact: 8,
       contactName: 'Styrelsen'
     });
   }
