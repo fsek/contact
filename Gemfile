@@ -20,7 +20,7 @@ group :development, :test do
   gem 'capistrano', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false
-  gem 'capistrano-passenger', require: false
+  gem 'capistrano-passenger', '>= 0.2.1', require: false
   gem 'capistrano-yarn', require: false
   gem 'capistrano-nvm', require: false
 end

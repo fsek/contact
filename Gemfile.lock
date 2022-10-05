@@ -58,7 +58,7 @@ GEM
       sshkit (~> 1.2)
     capistrano-nvm (0.0.7)
       capistrano (~> 3.1)
-    capistrano-passenger (0.2.0)
+    capistrano-passenger (0.2.1)
       capistrano (~> 3.0)
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
@@ -205,7 +205,7 @@ DEPENDENCIES
   cancancan
   capistrano
   capistrano-nvm
-  capistrano-passenger
+  capistrano-passenger (>= 0.2.1)
   capistrano-rails
   capistrano-rbenv
   capistrano-yarn
